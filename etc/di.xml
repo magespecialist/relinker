@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageSpecialist - Skeeller srl. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="MSP\ReLinker\Model\SerializerInterface" type="MSP\ReLinker\Model\Serializer"/>
+    <preference for="MSP\ReLinker\Model\Walker\WalkerRepositoryInterface"
+                type="MSP\ReLinker\Model\Walker\WalkerRepository"/>
+
+    <preference for="MSP\ReLinkerApi\Api\Data\RouteInterface" type="MSP\ReLinker\Model\Route"/>
+    <preference for="MSP\ReLinkerApi\Api\RouteRepositoryInterface" type="MSP\ReLinker\Model\RouteRepository"/>
+    <preference for="MSP\ReLinkerApi\Api\RouteSearchResultsInterface" type="MSP\ReLinker\Model\RouteSearchResults"/>
+    <preference for="MSP\ReLinker\Model\Route\Command\GetInterface" type="MSP\ReLinker\Model\Route\Command\Get"/>
+    <preference for="MSP\ReLinker\Model\Route\Command\SaveInterface" type="MSP\ReLinker\Model\Route\Command\Save"/>
+    <preference for="MSP\ReLinker\Model\Route\Command\DeleteInterface" type="MSP\ReLinker\Model\Route\Command\Delete"/>
+    <preference for="MSP\ReLinker\Model\Route\Command\GetListInterface"
+                type="MSP\ReLinker\Model\Route\Command\GetList"/>
+    <preference for="MSP\ReLinker\Model\RouteExtensionLoaderInterface" type="MSP\ReLinker\Model\RouteExtensionLoader"/>
+    <preference for="MSP\ReLinker\Model\Route\Command\GetByPathInterface"
+                type="MSP\ReLinker\Model\Route\Command\GetByPath"/>
+    <preference for="MSP\ReLinkerApi\Api\ProcessorRepositoryInterface"
+                type="MSP\ReLinker\Model\Processor\ProcessorRepository"/>
+    <preference for="MSP\ReLinker\Model\ProcessorsManagerInterface" type="MSP\ReLinker\Model\ProcessorsManager"/>
+    <preference for="MSP\ReLinker\Model\PostProcessor\PostProcessorInterface"
+                type="MSP\ReLinker\Model\PostProcessor\PostProcessorChain"/>
+
+    <preference for="\MSP\ReLinkerApi\Api\Data\RouteInterface" type="\MSP\ReLinker\Model\Route"/>
+    <preference for="\MSP\ReLinkerApi\Api\RouteRepositoryInterface" type="\MSP\ReLinker\Model\RouteRepository"/>
+    <preference for="\MSP\ReLinkerApi\Api\RouteSearchResultsInterface" type="\MSP\ReLinker\Model\RouteSearchResults"/>
+    <preference for="\MSP\ReLinker\Model\Route\Command\GetInterface" type="\MSP\ReLinker\Model\Route\Command\Get"/>
+    <preference for="\MSP\ReLinker\Model\Route\Command\SaveInterface" type="\MSP\ReLinker\Model\Route\Command\Save"/>
+    <preference for="\MSP\ReLinker\Model\Route\Command\DeleteInterface"
+                type="\MSP\ReLinker\Model\Route\Command\Delete"/>
+    <preference for="\MSP\ReLinker\Model\Route\Command\GetListInterface"
+                type="\MSP\ReLinker\Model\Route\Command\GetList"/>
+    <preference for="\MSP\ReLinker\Model\RouteExtensionLoaderInterface"
+                type="\MSP\ReLinker\Model\RouteExtensionLoader"/>
+    <preference for="\MSP\ReLinker\Model\Route\Command\GetByPathInterface"
+                type="\MSP\ReLinker\Model\Route\Command\GetByPath"/>
+
+    <type name="MSP\ReLinker\Model\PostProcessor\PostProcessorChain">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="MSP\ReLinker\Model\Processor\ProcessorRepository">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="MSP\ReLinker\Model\Walker\WalkerRepository">
+        <arguments>
+            <argument name="walkers" xsi:type="array">
+
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- UI components for admin (must be in global area) -->
+
+    <!-- Route grid: START -->
+    <virtualType name="MSP\ReLinker\Ui\DataProvider\RouteFilterPool"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular"
+                      xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext"
+                      xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="msp_relinker_route_data_source"
+                      xsi:type="string">MSP\ReLinker\Model\ResourceModel\UI\Route\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="MSP\ReLinker\Model\ResourceModel\UI\Route\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">msp_relinker_route</argument>
+            <argument name="resourceModel"
+                      xsi:type="string">MSP\ReLinker\Model\ResourceModel\Route\Collection</argument>
+        </arguments>
+    </virtualType>
+    <!-- Route grid: END -->
+
+    <type name="MSP\ReLinker\Ui\DataProvider\Form\RouteDataProvider">
+        <arguments>
+            <argument name="modifierPool"
+                      xsi:type="object">MSP\ReLinker\Ui\DataProvider\Form\Route\Modifier\Pool</argument>
+        </arguments>
+    </type>
+
+    <type name="MSP\ReLinker\Ui\DataProvider\Listing\RouteDataProvider">
+        <arguments>
+            <argument name="modifierPool"
+                      xsi:type="object">MSP\ReLinker\Ui\DataProvider\Listing\Route\Modifier\Pool</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="MSP\ReLinker\Ui\DataProvider\Form\Route\Modifier\Pool"
+                 type="Magento\Ui\DataProvider\Modifier\Pool">
+
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="MSP\ReLinker\Ui\DataProvider\Listing\Route\Modifier\Pool"
+                 type="Magento\Ui\DataProvider\Modifier\Pool">
+
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+
+            </argument>
+        </arguments>
+    </virtualType>
+</config>
