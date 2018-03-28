@@ -14,9 +14,9 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\App\RouterInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\Serialize\SerializerInterface;
 use MSP\ReLinker\Model\PostProcessor\PostProcessorInterface;
 use MSP\ReLinker\Model\ProcessorsManagerInterface;
+use MSP\ReLinker\Model\SerializerInterface;
 use MSP\ReLinkerApi\Api\RouteRepositoryInterface;
 use Magento\Framework\App\Action\Redirect;
 
