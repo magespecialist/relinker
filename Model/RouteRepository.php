@@ -65,7 +65,7 @@ class RouteRepository implements \MSP\ReLinkerApi\Api\RouteRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function save(\MSP\ReLinkerApi\Api\Data\RouteInterface $route): int
+    public function save(\MSP\ReLinkerApi\Api\Data\RouteInterface $route)
     {
         return $this->commandSave->execute($route);
     }
@@ -73,7 +73,7 @@ class RouteRepository implements \MSP\ReLinkerApi\Api\RouteRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function get(int $routeId): \MSP\ReLinkerApi\Api\Data\RouteInterface
+    public function get($routeId)
     {
         return $this->commandGet->execute($routeId);
     }
@@ -81,7 +81,7 @@ class RouteRepository implements \MSP\ReLinkerApi\Api\RouteRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function getByPath(string $path): \MSP\ReLinkerApi\Api\Data\RouteInterface
+    public function getByPath($path)
     {
         return $this->commandGetByPath->execute($path);
     }
