@@ -8,8 +8,6 @@ declare(strict_types=1);
 
 namespace MSP\ReLinker\Model\Route\Command;
 
-use Magento\Framework\Api\SearchCriteriaInterface;
-
 /**
  * Find Route by SearchCriteria command (Service Provider Interface - SPI)
  *
@@ -26,10 +24,7 @@ interface GetListInterface
      * Find Route by given SearchCriteria
      * SearchCriteria is not required because load all sources is useful case
      *
-     * @param SearchCriteriaInterface|null $searchCriteria
      * @return \MSP\ReLinkerApi\Api\RouteSearchResultsInterface
      */
-    public function execute(
-        SearchCriteriaInterface $searchCriteria = null
-    ): \MSP\ReLinkerApi\Api\RouteSearchResultsInterface;
+    public function execute(): \MSP\ReLinkerApi\Api\RouteSearchResultsInterface;
 }
