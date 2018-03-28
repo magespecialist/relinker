@@ -89,7 +89,7 @@ class RouteRepository implements \MSP\ReLinkerApi\Api\RouteRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function deleteById(int $routeId)
+    public function deleteById($routeId)
     {
         $this->commandDeleteById->execute($routeId);
     }
@@ -99,7 +99,7 @@ class RouteRepository implements \MSP\ReLinkerApi\Api\RouteRepositoryInterface
      */
     public function getList(
         SearchCriteriaInterface $searchCriteria = null
-    ): \MSP\ReLinkerApi\Api\RouteSearchResultsInterface {
-        return $this->commandGetList->execute($searchCriteria);
+    ) {
+        return $this->commandGetList->execute();
     }
 }
