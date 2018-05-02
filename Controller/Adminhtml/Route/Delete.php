@@ -47,7 +47,7 @@ class Delete extends Action
 
         try {
             $route = $this->routeRepository->get($routeId);
-            $this->routeRepository->deleteById($route->getId());
+            $this->routeRepository->deleteById($routeId);
             $this->messageManager->addSuccessMessage(__('Route "%1" deleted.', $route->getName()));
         } catch (\Exception $e) {
             $this->messageManager->addErrorMessage(__('Could not delete route: %1.', $e->getMessage()));
