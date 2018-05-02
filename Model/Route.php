@@ -91,22 +91,6 @@ class Route extends AbstractExtensibleModel implements
     /**
      * @inheritdoc
      */
-    public function getQs()
-    {
-        return $this->getData(self::QS);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function setQs($value)
-    {
-        return $this->setData(self::QS, $value);
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function getExtensionAttributes()
     {
         return $this->_getExtensionAttributes();
